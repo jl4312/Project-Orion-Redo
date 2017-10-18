@@ -32,3 +32,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+BridgePrototype/Library/metadata/
+BridgePrototype/Library/ShaderCache/
+BridgePrototype/Temp/
