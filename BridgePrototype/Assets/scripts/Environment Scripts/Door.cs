@@ -15,7 +15,8 @@ public class Door : MonoBehaviour
 	
 	// the vector of movement for opening
 	Vector3 moveDir;
-	
+
+	private Material mat;
 	// Use this for initialization
 	void Start()
 	{
@@ -33,6 +34,9 @@ public class Door : MonoBehaviour
 		{
 			this.gameObject.AddComponent<TriggerScript>();
 		}
+
+		mat = GetComponentsInChildren<Renderer> () [0].material;
+		mat.SetColor ("_EmissionColor", Color.black);
 	}
 	
 	// Update is called once per frame
@@ -41,6 +45,11 @@ public class Door : MonoBehaviour
 		// if the trigger component is triggered then we move up until we are at the door's max point (we use dot product as to allow for arbitrary orientation)
 		if (this.GetComponent<TriggerScript>().triggered)
 		{
+			if(mat.GetColor("_EmissionColor").r < 1f)
+				mat.SetColor ("_EmissionColor", new Color(mat.GetColor("_EmissionColor").r + 01f,
+			                                          mat.GetColor("_EmissionColor").r + 01f,
+			                                          mat.GetColor("_EmissionColor").r + 01f,
+			                                          1f));
 			if (Vector3.Dot(endPoint.transform.position, moveDir) > Vector3.Dot(actualDoor.transform.position, moveDir))
 			{
 				actualDoor.transform.position += moveDir * .04f;
@@ -49,6 +58,7 @@ public class Door : MonoBehaviour
 		// otherwise we move down until we hit the start point
 		else
 		{
+			mat.SetColor ("_EmissionColor", Color.black);
 			if (Vector3.Dot(startPoint, moveDir) < Vector3.Dot(actualDoor.transform.position, moveDir))
 			{
 				actualDoor.transform.position -= moveDir * .04f;

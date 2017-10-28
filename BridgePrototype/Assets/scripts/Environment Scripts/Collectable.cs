@@ -14,6 +14,8 @@ public class Collectable : MonoBehaviour {
 	private Vector3 acceleration;
 
 	private float collisionDist = 0.1f;
+
+	private Material mat;
 	// Use this for initialization
 	void Start () {
 		activated = false;
@@ -21,24 +23,41 @@ public class Collectable : MonoBehaviour {
 
 		acceleration = new Vector3 (0, 0, 0);
 		velocity = new Vector3 (0, 0, 0);
+
+		Renderer renderer = GetComponent<Renderer> ();
+		mat = renderer.material;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (activated && !atPos) {
-			CheckCollision ();
+		if (activated) {
 
-			Arrive (endPos.transform.position);
-			velocity += acceleration;
-			if (velocity.magnitude > maxSpeed) {
-				velocity = velocity.normalized * maxSpeed;
+			if(!atPos)
+			{
+				CheckCollision ();
+
+				Arrive (endPos.transform.position);
+				velocity += acceleration;
+				if (velocity.magnitude > maxSpeed) {
+					velocity = velocity.normalized * maxSpeed;
+				}
+				core.transform.position += velocity / 10;
+				acceleration *= 0;
 			}
-			core.transform.position += velocity / 10;
-			acceleration *= 0;
 
+			if(atPos && mat.GetColor("_EmissionColor").r < 1f)
+			{
+		
+				Color baseColor = new Color(mat.GetColor("_EmissionColor").r + .05f, 
+				                            mat.GetColor("_EmissionColor").r + .05f,
+				                            mat.GetColor("_EmissionColor").r + .05f, 1f);
+				mat.SetColor("_EmissionColor", baseColor);
+			}
 
 		}
+
+
 
 	}
 	void Arrive(Vector3 target)

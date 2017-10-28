@@ -8,11 +8,10 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: onePossesionBlock_mi
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHATEST_ON _EMISSION _NORMALMAP
-  m_LightmapFlags: 1
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_ShaderKeywords: _DETAIL_MULX2 _EMISSION _NORMALMAP
+  m_LightmapFlags: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -34,7 +33,7 @@ Material:
         first:
           name: _DetailNormalMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: a1e1c8c0e0096fb40b665a0e6302bac2, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -69,7 +68,7 @@ Material:
         first:
           name: _DetailAlbedoMap
         second:
-          m_Texture: {fileID: 2800000, guid: 0d686e4520a11dc4f95cd8795e1571ad, type: 3}
+          m_Texture: {fileID: 2800000, guid: 328b7e9795d7f6242b3c07125780de90, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -91,7 +90,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .5
+        second: .829999983
       data:
         first:
           name: _Parallax
@@ -103,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: 0
       data:
         first:
           name: _BumpScale
@@ -111,7 +110,7 @@ Material:
       data:
         first:
           name: _OcclusionStrength
-        second: 1
+        second: .779999971
       data:
         first:
           name: _DetailNormalMapScale
@@ -123,7 +122,7 @@ Material:
       data:
         first:
           name: _Mode
-        second: 1
+        second: 0
       data:
         first:
           name: _Metallic
@@ -132,7 +131,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .00999999978, g: .00999999978, b: .00999999978, a: 1}
       data:
         first:
           name: _Color

@@ -47,6 +47,7 @@ public class SingleControlRock : MonoBehaviour {
 	Vector3 movementVec;
 	public Vector3 startPosition;
 
+	Material mat;
 	// Use this for initialization
 	void Start () {
 		// setting up the camera from the scene
@@ -55,6 +56,8 @@ public class SingleControlRock : MonoBehaviour {
         soundSource = GetComponent<AudioSource>();
 		timerFull = 3;
 		startPosition = transform.position;
+
+		mat = GetComponentInChildren<Renderer> ().materials [0];
 	}
 	
 	void FixedUpdate(){
@@ -102,12 +105,20 @@ public class SingleControlRock : MonoBehaviour {
 				}
 
 				player1.GetComponent<PlayerScript>().meldObject = null;
+				
+				mat.SetColor ("_EmissionColor", Color.black);
 				player1 = null;
 			}
 		}
 		
 		// if the player is inhabiting the rock, we use a control system identical to the player to control movement, see player class for more specifics
 		if (player1) {
+
+			if(mat.GetColor("_EmissionColor").r < 1f)
+				mat.SetColor("_EmissionColor", new Color(mat.GetColor("_EmissionColor").r + .05f,
+				                                         mat.GetColor("_EmissionColor").r + .05f,
+				                                         mat.GetColor("_EmissionColor").r + .05f,
+				                                         1f) );
 			cameraAngleDiff = Vector3.Angle (new Vector3 (0, 0, 1), new Vector3 (myCamera.transform.forward.x, 0, myCamera.transform.forward.z));
 			
 			Vector3 cross = Vector3.Cross (new Vector3 (0, 0, 1), new Vector3 (myCamera.transform.forward.x, 0, myCamera.transform.forward.z));
@@ -220,6 +231,9 @@ public class SingleControlRock : MonoBehaviour {
 
 	public void removePlayer()
 	{
+
+		mat.SetColor ("_EmissionColor", Color.black);
+
 		if (!player1)
 			return;
 
@@ -236,6 +250,7 @@ public class SingleControlRock : MonoBehaviour {
 		}
 
 		player1.GetComponent<PlayerScript>().meldObject = null;
+
 		player1 = null;
 
 	}

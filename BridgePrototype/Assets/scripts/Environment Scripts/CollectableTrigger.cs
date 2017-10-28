@@ -13,6 +13,8 @@ public class CollectableTrigger : MonoBehaviour {
 		if (!trigger) {
 			trigger = true;
 			for (int i = 0; i < collectableList.Length; i++) {
+				if(!collectableList[i])
+					continue;
 				if(!collectableList[i].atPos || !collectableList[i].activated)
 				{
 					trigger = false;

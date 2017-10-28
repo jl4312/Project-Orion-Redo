@@ -18,7 +18,7 @@ public class ColorScript : MonoBehaviour
 		cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>();
 		rS = transform.GetComponentsInChildren<Renderer>();
 
-		if(isWhite)
+		if(!isWhite)
 			rS[1].material.color = new Color(1, 1, 1, 1f);
 		else
 			rS[1].material.color = new Color(0, 0, 0, 1f);
@@ -59,7 +59,7 @@ public class ColorScript : MonoBehaviour
 		if (col.gameObject.tag == "Player") {
 			if (change) {
 				isWhite = !isWhite;
-				if (isWhite)
+				if (!isWhite)
 					rS [1].material.color = new Color (1, 1, 1, 1f);
 				else
 					rS [1].material.color = new Color (0, 0, 0, 1f);

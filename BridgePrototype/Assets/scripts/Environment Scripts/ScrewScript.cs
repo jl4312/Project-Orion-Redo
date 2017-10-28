@@ -73,7 +73,8 @@ public class ScrewScript : MonoBehaviour {
 	
 	// tracks the current amount that the screw is spun
 	public float spinVal;
-	
+
+	private Renderer[] matList;
 	// We set up our initial camera reference, instantiate the values tracking input and position, and also set up the UI prompt as transparent
 	void Start () {
 		myCamera = GameObject.FindGameObjectWithTag ("MainCamera");
@@ -88,6 +89,11 @@ public class ScrewScript : MonoBehaviour {
 		transform.GetChild (0).GetChild (4).GetComponent<SpriteRenderer> ().color = tempColor;
 		spinVal = 0;
         soundSource = GetComponent<AudioSource>();
+
+		matList = GetComponentsInChildren<Renderer> ();
+
+		for (int i = 0; i < matList.Length; i++)
+			matList [i].material.SetColor ("_EmissionColor", Color.black);
 	}
 	
 	// Update is called once per frame
@@ -135,12 +141,23 @@ public class ScrewScript : MonoBehaviour {
 				rotatePromptTimerCurrent =0;
 
 				player.GetComponent<PlayerScript>().meldObject = null;
+
+				for (int i = 0; i < matList.Length; i++)
+					matList [i].material.SetColor ("_EmissionColor", Color.black);
+
 				player = null;
 
 			}
 			
 			//If there's a player then we check for input for rotation to see if they are moving the screw
 			if(player){
+
+				if(matList[0].material.GetColor("_EmissionColor").r < 1f)
+					for (int i = 0; i < matList.Length; i++)
+						matList [i].material.SetColor ("_EmissionColor",new Color( matList[0].material.GetColor("_EmissionColor").r + 01f,
+						                               matList[0].material.GetColor("_EmissionColor").r + 01f,
+						                               matList[0].material.GetColor("_EmissionColor").r + 01f,
+						                               1f));
 				analogStickPos = new Vector2(Input.GetAxis(player.GetComponent<PlayerScript>().myLeftStick + "X"),Input.GetAxis(player.GetComponent<PlayerScript>().myLeftStick + "Y"));
 				
 				// if the analog stick is on its fringes (over 95% extended) then we will check if it is being spun

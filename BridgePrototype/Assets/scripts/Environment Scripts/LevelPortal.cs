@@ -8,6 +8,7 @@ public class LevelPortal : MonoBehaviour {
 	//public GameObject myCamera;
 
 	public bool ready;
+	Material mat;
 	// Use this for initialization
 	void Start () {
 		ready = false;
@@ -16,12 +17,17 @@ public class LevelPortal : MonoBehaviour {
 
 		for (int i = 0; i < playerList.Length; i++)
 			isEnter [i] = false;
+
+		mat = GetComponentsInChildren<Renderer>()[1].materials[1];
+		mat.SetColor ("_EmissionColor", Color.black);
+	
+		GetComponentsInChildren<MeshRenderer> () [0].enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		ready = true;
+
 		for (int i = 0; i < isEnter.Length; i++)
 		{
 			if (isEnter [i]) {
@@ -34,6 +40,14 @@ public class LevelPortal : MonoBehaviour {
 
 
 		if (this.GetComponent<TriggerScript> ().triggered) {
+
+			if(mat.GetColor("_EmissionColor").r < 1f)
+			{
+				GetComponentsInChildren<MeshRenderer> () [0].enabled = true;
+				mat.SetColor("_EmissionColor", new Color(mat.GetColor("_Color").r + .05f,
+				                                         mat.GetColor("_Color").r + .05f,
+				                                         mat.GetColor("_Color").r + .05f, 1f));
+			}
 			if(ready)
 			{
 				PlayTransition();
@@ -43,14 +57,12 @@ public class LevelPortal : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
-
-			for(int i = 0; i < playerList.Length; i++)
-			{
-				if(col.gameObject == playerList[i])
-				{
-					isEnter[i] = true;
-				}
+		ready = true;
+		for (int i = 0; i < playerList.Length; i++) {
+			if (col.gameObject == playerList [i]) {
+				isEnter [i] = true;
 			}
+		}
 		
 	}
 

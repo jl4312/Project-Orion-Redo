@@ -316,6 +316,7 @@ public class PlayerScript : MonoBehaviour {
 	void Jump()
 	{
 		rig.velocity += jumpheight * transform.up;
+
 		airborne = true;
 	}
 	
