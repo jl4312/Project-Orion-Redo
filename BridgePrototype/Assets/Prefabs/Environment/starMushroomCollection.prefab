@@ -11,7 +11,6 @@ GameObject:
   - 33: {fileID: 3324104}
   - 23: {fileID: 2365678}
   - 95: {fileID: 9528374}
-  - 64: {fileID: 6438824}
   m_Layer: 0
   m_Name: starMushroomCollection
   m_TagString: Untagged
@@ -25,9 +24,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135470}
-  m_LocalRotation: {x: -.358647794, y: .824141145, z: -.375324637, w: .226483107}
-  m_LocalPosition: {x: 65.9300003, y: 16.5400009, z: -57.8400002}
-  m_LocalScale: {x: 1.43414223, y: 1.43414235, z: 1.43414211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.242981, y: -3.00556248e-16, z: -9.53991985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +40,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9d58ed6144298aa40b653a585bd7bf29, type: 2}
+  - {fileID: 2100000, guid: 311f45e0acbba1b44bc8441cc517c7c3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -61,18 +60,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135470}
-  m_Mesh: {fileID: 4300000, guid: d0dc3e12c17118a42aaae0f917e4cfed, type: 3}
---- !u!64 &6438824
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135470}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: d0dc3e12c17118a42aaae0f917e4cfed, type: 3}
 --- !u!95 &9528374
 Animator:
